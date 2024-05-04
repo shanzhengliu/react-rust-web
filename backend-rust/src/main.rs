@@ -1,8 +1,10 @@
+mod route;
+mod api;
 mod assets;
 
 use actix_web::{App, HttpServer};
-use crate::assets::{index, static_files};
 use env_logger::Env;
+use crate::route::config;
 
 #[tokio::main]
 async fn main() {
@@ -11,8 +13,8 @@ async fn main() {
     log::info!("starting HTTP server at http://localhost:{}", &app_run_port );
     HttpServer::new(|| {
         App::new()
-            .service(index)
-            .service(static_files)
+            .configure(config)
+
     })
         .bind(format!("0.0.0.0:{}",app_run_port)).expect(format!("Can not bind to port {}", app_run_port).as_str())
         .run().await.unwrap()
