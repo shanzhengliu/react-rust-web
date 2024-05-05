@@ -5,7 +5,9 @@ mod api;
 mod assets;
 
 
+use actix_cors::Cors;
 use actix_web::{App, HttpServer};
+use actix_web::http::header;
 use env_logger::Env;
 use crate::route::config;
 
@@ -16,6 +18,12 @@ async fn main() {
     log::info!("starting HTTP server at http://localhost:{}", &app_run_port );
 
     let app = ||{ App::new()
+        .wrap(Cors::permissive()
+            .allowed_methods(vec!["*"])
+            .allowed_headers(vec![header::AUTHORIZATION, header::ACCEPT])
+            .allowed_header(header::CONTENT_TYPE)
+            .max_age(3600)
+            )
         .configure(config)};
 
     HttpServer::new(app)
