@@ -1,10 +1,10 @@
 # node build start
-FROM node:20-slim AS NodeBuild
+FROM oven/bun:canary-alpine AS NodeBuild
 WORKDIR /app
 COPY ./frontend-react/ /app
-RUN npm install -g pnpm
-RUN pnpm install
-RUN pnpm build
+RUN bun upgrade
+RUN bun install
+RUN bun run build
 # node build end
 
 
