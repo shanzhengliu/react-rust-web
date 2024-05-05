@@ -387,6 +387,7 @@ version = "0.1.0"
 dependencies = [
  "actix-web",
  "axum",
+ "custom_marcos",
  "env_logger",
  "log",
  "mime",
@@ -605,6 +606,14 @@ checksum = "1bfb12502f3fc46cca1bb51ac28df9d618d813cdc3d2f25b9fe775a34af26bb3"
 dependencies = [
  "generic-array",
  "typenum",
+]
+
+[[package]]
+name = "custom_marcos"
+version = "0.1.0"
+dependencies = [
+ "quote",
+ "syn 2.0.60",
 ]
 
 [[package]]
