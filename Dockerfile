@@ -9,7 +9,6 @@ RUN bun run build
 
 
 FROM rust:1.77.2-alpine AS build
-ARG APP_NAME
 WORKDIR /app
 RUN mkdir /app/static
 # Install host build dependencies.
